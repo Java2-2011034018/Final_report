@@ -8,6 +8,9 @@
 public class Calculation extends javax.swing.JFrame {
 	
 	Log l = new Log();
+	
+	double first = 0, second = 0, temp = 0, finish = 0;
+	String type, log_message;
      
     public Calculation() {
         initComponents();
@@ -33,11 +36,11 @@ public class Calculation extends javax.swing.JFrame {
         Button8 = new javax.swing.JButton();
         Button9 = new javax.swing.JButton();
         Button_multiple = new javax.swing.JButton();
-        Button0 = new javax.swing.JButton();
-        Button00 = new javax.swing.JButton();
         Button_dot = new javax.swing.JButton();
-        Button_divide = new javax.swing.JButton();
+        Button0 = new javax.swing.JButton();
         Button_reverse = new javax.swing.JButton();
+        Button_divide = new javax.swing.JButton();
+        Button_clear = new javax.swing.JButton();
         Button_result = new javax.swing.JButton();
         Button_module = new javax.swing.JButton();
         Button_square = new javax.swing.JButton();
@@ -60,6 +63,7 @@ public class Calculation extends javax.swing.JFrame {
 
         textDisplay.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         textDisplay.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        textDisplay.setText("0");
         textDisplay.setEditable(false);
         
         Button1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -134,6 +138,14 @@ public class Calculation extends javax.swing.JFrame {
             }
         });
 
+        Button_dot.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        Button_dot.setText(".");
+        Button_dot.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button_dotActionPerformed(evt);
+            }
+        });
+
         Button0.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         Button0.setText("0");
         Button0.addActionListener(new java.awt.event.ActionListener() {
@@ -142,19 +154,11 @@ public class Calculation extends javax.swing.JFrame {
             }
         });
 
-        Button00.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        Button00.setText("00");
-        Button00.addActionListener(new java.awt.event.ActionListener() {
+        Button_reverse.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        Button_reverse.setText("¡¾");
+        Button_reverse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Button00ActionPerformed(evt);
-            }
-        });
-
-        Button_dot.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        Button_dot.setText(".");
-        Button_dot.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Button_dotActionPerformed(evt);
+                Button_reverseActionPerformed(evt);
             }
         });
         
@@ -190,11 +194,11 @@ public class Calculation extends javax.swing.JFrame {
             }
         });
 
-        Button_reverse.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        Button_reverse.setText("+/-");
-        Button_reverse.addActionListener(new java.awt.event.ActionListener() {
+        Button_clear.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        Button_clear.setText("C");
+        Button_clear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Button_reverseActionPerformed(evt);
+                Button_clearActionPerformed(evt);
             }
         });
 
@@ -271,15 +275,15 @@ public class Calculation extends javax.swing.JFrame {
                                         .addComponent(Button_plus, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(Button_reverse, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Button_clear, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(Button0, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(Button_dot, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(Button00, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(Button0, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(Button_dot, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(Button_reverse, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(Button_divide, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(Button_result, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -319,13 +323,13 @@ public class Calculation extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Button00, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Button0, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Button_dot, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Button_reverse, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Button_divide, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Button_reverse, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                            .addComponent(Button_clear, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
                             .addComponent(Button_result, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(Button_record, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(20, Short.MAX_VALUE))
@@ -335,54 +339,92 @@ public class Calculation extends javax.swing.JFrame {
     }                    
 
     protected void Button1ActionPerformed(java.awt.event.ActionEvent evt) {
-
+    	if(textDisplay.getText().equals("0")){
+    		textDisplay.setText("");
+    	}
+    	textDisplay.setText( textDisplay.getText() + "1"); 
     }     
     
-    protected void Button2ActionPerformed(java.awt.event.ActionEvent evt) {                                        
-
+    protected void Button2ActionPerformed(java.awt.event.ActionEvent evt) { 
+    	if(textDisplay.getText().equals("0")){
+    		textDisplay.setText("");
+    	}
+    	textDisplay.setText( textDisplay.getText() + "2"); 
     }
     
-    protected void Button3ActionPerformed(java.awt.event.ActionEvent evt) {                                        
-
+    protected void Button3ActionPerformed(java.awt.event.ActionEvent evt) {  
+    	if(textDisplay.getText().equals("0")){
+    		textDisplay.setText("");
+    	}
+    	textDisplay.setText( textDisplay.getText() + "3"); 
     }
     
-    protected void Button4ActionPerformed(java.awt.event.ActionEvent evt) {                                        
-      
+    protected void Button4ActionPerformed(java.awt.event.ActionEvent evt) {  
+    	if(textDisplay.getText().equals("0")){
+    		textDisplay.setText("");
+    	}
+    	textDisplay.setText( textDisplay.getText() + "4"); 
     }
     
-    protected void Button5ActionPerformed(java.awt.event.ActionEvent evt) {                                        
-        
+    protected void Button5ActionPerformed(java.awt.event.ActionEvent evt) {  
+    	if(textDisplay.getText().equals("0")){
+    		textDisplay.setText("");
+    	}
+    	textDisplay.setText( textDisplay.getText() + "5"); 
     }
     
-    protected void Button6ActionPerformed(java.awt.event.ActionEvent evt) {                                        
-       
+    protected void Button6ActionPerformed(java.awt.event.ActionEvent evt) { 
+    	if(textDisplay.getText().equals("0")){
+    		textDisplay.setText("");
+    	}
+    	textDisplay.setText( textDisplay.getText() + "6"); 
     }
     
-    protected void Button7ActionPerformed(java.awt.event.ActionEvent evt) {                                        
-       
+    protected void Button7ActionPerformed(java.awt.event.ActionEvent evt) { 
+    	if(textDisplay.getText().equals("0")){
+    		textDisplay.setText("");
+    	}
+    	textDisplay.setText( textDisplay.getText() + "7");    
     }
     
-    protected void Button8ActionPerformed(java.awt.event.ActionEvent evt) {                                        
-      
+    protected void Button8ActionPerformed(java.awt.event.ActionEvent evt) {  
+    	if(textDisplay.getText().equals("0")){
+    		textDisplay.setText("");
+    	}
+    	textDisplay.setText( textDisplay.getText() + "8"); 
     }
     
-    protected void Button9ActionPerformed(java.awt.event.ActionEvent evt) {                                        
-       
+    protected void Button9ActionPerformed(java.awt.event.ActionEvent evt) { 
+    	if(textDisplay.getText().equals("0")){
+    		textDisplay.setText("");
+    	}
+    	textDisplay.setText( textDisplay.getText() + "9"); 
     }
     
-    protected void Button0ActionPerformed(java.awt.event.ActionEvent evt) {                                        
-       
+    protected void Button_dotActionPerformed(java.awt.event.ActionEvent evt) {
+    	
+    	if(textDisplay.getText().contains(".")){
+    		return;
+    	}
+        textDisplay.setText( textDisplay.getText() + ".");
     }
     
-    protected void Button00ActionPerformed(java.awt.event.ActionEvent evt) {                                        
-      
+    protected void Button0ActionPerformed(java.awt.event.ActionEvent evt) { 
+    	
+    	if(textDisplay.getText().equals("0")){
+    		return;
+    	}
+    	textDisplay.setText( textDisplay.getText() + "0"); 
     }
     
-    protected void Button_dotActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        
+    protected void Button_reverseActionPerformed(java.awt.event.ActionEvent evt) { 
+    	
     }
     
-    protected void Button_plusActionPerformed(java.awt.event.ActionEvent evt) {                                           
+    protected void Button_plusActionPerformed(java.awt.event.ActionEvent evt) {
+    	
+    	first = Double.parseDouble(textDisplay.getText());
+    	type = "+";
        
     }
     
@@ -398,7 +440,7 @@ public class Calculation extends javax.swing.JFrame {
         
     }
     
-    protected void Button_reverseActionPerformed(java.awt.event.ActionEvent evt) {                                           
+    protected void Button_clearActionPerformed(java.awt.event.ActionEvent evt) {                                           
         
     }
     
@@ -451,8 +493,8 @@ public class Calculation extends javax.swing.JFrame {
         });
     }
                 
+    protected javax.swing.JButton Button_dot;
     protected javax.swing.JButton Button0;
-    protected javax.swing.JButton Button00;
     protected javax.swing.JButton Button1;
     protected javax.swing.JButton Button2;
     protected javax.swing.JButton Button3;
@@ -462,13 +504,13 @@ public class Calculation extends javax.swing.JFrame {
     protected javax.swing.JButton Button7;
     protected javax.swing.JButton Button8;
     protected javax.swing.JButton Button9;
-    protected javax.swing.JButton Button_dot;
+    protected javax.swing.JButton Button_reverse;
     protected javax.swing.JButton Button_plus;
     protected javax.swing.JButton Button_minus;
     protected javax.swing.JButton Button_multiple;
     protected javax.swing.JButton Button_divide;
     protected javax.swing.JButton Button_module;
-    protected javax.swing.JButton Button_reverse;
+    protected javax.swing.JButton Button_clear;
     protected javax.swing.JButton Button_square;
     protected javax.swing.JButton Button_result;
     protected javax.swing.JButton Button_record;
