@@ -60,6 +60,7 @@ public class Calculation extends javax.swing.JFrame {
 
         textDisplay.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         textDisplay.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        textDisplay.setEditable(false);
         
         Button1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         Button1.setText("1");
@@ -333,7 +334,7 @@ public class Calculation extends javax.swing.JFrame {
         pack();
     }                    
 
-    protected void Button1ActionPerformed(java.awt.event.ActionEvent evt) {                                        
+    protected void Button1ActionPerformed(java.awt.event.ActionEvent evt) {
 
     }     
     
