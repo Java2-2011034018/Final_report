@@ -9,7 +9,7 @@ public class Calculation extends javax.swing.JFrame {
 	
 	Log l = new Log();
 	
-	double first = 0, second = 0, temp = 0, finish = 0;
+	double value = 0, result = 0;
 	String type, log_message;
      
     public Calculation() {
@@ -342,63 +342,136 @@ public class Calculation extends javax.swing.JFrame {
     	if(textDisplay.getText().equals("0")){
     		textDisplay.setText("");
     	}
-    	textDisplay.setText( textDisplay.getText() + "1"); 
+    	
+    	textDisplay.setText( textDisplay.getText() + "1");
+    	
+    	if(log_message == null){
+    		log_message = "1";
+    	}
+    	else{
+    		log_message = log_message + "1";
+    	}
+    	
     }     
     
     protected void Button2ActionPerformed(java.awt.event.ActionEvent evt) { 
     	if(textDisplay.getText().equals("0")){
     		textDisplay.setText("");
     	}
-    	textDisplay.setText( textDisplay.getText() + "2"); 
+    	
+    	textDisplay.setText( textDisplay.getText() + "2");
+
+    	if(log_message == null){
+    		log_message = "2";
+    	}
+    	else{
+    		log_message = log_message + "2";
+    	}
     }
     
     protected void Button3ActionPerformed(java.awt.event.ActionEvent evt) {  
     	if(textDisplay.getText().equals("0")){
     		textDisplay.setText("");
     	}
-    	textDisplay.setText( textDisplay.getText() + "3"); 
+    	
+    	textDisplay.setText( textDisplay.getText() + "3");
+    	
+    	if(log_message == null){
+    		log_message = "3";
+    	}
+    	else{
+    		log_message = log_message + "3";
+    	}
     }
     
     protected void Button4ActionPerformed(java.awt.event.ActionEvent evt) {  
     	if(textDisplay.getText().equals("0")){
     		textDisplay.setText("");
     	}
+    	
     	textDisplay.setText( textDisplay.getText() + "4"); 
+
+    	if(log_message == null){
+    		log_message = "4";
+    	}
+    	else{
+    		log_message = log_message + "4";
+    	}
     }
     
     protected void Button5ActionPerformed(java.awt.event.ActionEvent evt) {  
     	if(textDisplay.getText().equals("0")){
     		textDisplay.setText("");
     	}
-    	textDisplay.setText( textDisplay.getText() + "5"); 
+    	
+    	textDisplay.setText( textDisplay.getText() + "5");
+    	
+    	if(log_message == null){
+    		log_message = "5";
+    	}
+    	else{
+    		log_message = log_message + "5";
+    	}
     }
     
     protected void Button6ActionPerformed(java.awt.event.ActionEvent evt) { 
     	if(textDisplay.getText().equals("0")){
     		textDisplay.setText("");
     	}
+    	
     	textDisplay.setText( textDisplay.getText() + "6"); 
+
+    	if(log_message == null){
+    		log_message = "6";
+    	}
+    	else{
+    		log_message = log_message + "6";
+    	}
     }
     
     protected void Button7ActionPerformed(java.awt.event.ActionEvent evt) { 
     	if(textDisplay.getText().equals("0")){
     		textDisplay.setText("");
     	}
-    	textDisplay.setText( textDisplay.getText() + "7");    
+    	
+    	textDisplay.setText( textDisplay.getText() + "7"); 
+    	
+    	if(log_message == null){
+    		log_message = "7";
+    	}
+    	else{
+    		log_message = log_message + "7";
+    	}
     }
     
     protected void Button8ActionPerformed(java.awt.event.ActionEvent evt) {  
     	if(textDisplay.getText().equals("0")){
     		textDisplay.setText("");
     	}
-    	textDisplay.setText( textDisplay.getText() + "8"); 
+    	
+    	textDisplay.setText( textDisplay.getText() + "8");
+    	
+    	if(log_message == null){
+    		log_message = "8";
+    	}
+    	else{
+    		log_message = log_message + "8";
+    	}
     }
     
     protected void Button9ActionPerformed(java.awt.event.ActionEvent evt) { 
     	if(textDisplay.getText().equals("0")){
     		textDisplay.setText("");
     	}
+    	
     	textDisplay.setText( textDisplay.getText() + "9"); 
+    	
+    	if(log_message == null){
+    		log_message = "9";
+    	}
+    	else{
+    		log_message = log_message + "9";
+    	}
     }
     
     protected void Button_dotActionPerformed(java.awt.event.ActionEvent evt) {
@@ -406,7 +479,9 @@ public class Calculation extends javax.swing.JFrame {
     	if(textDisplay.getText().contains(".")){
     		return;
     	}
+    	
         textDisplay.setText( textDisplay.getText() + ".");
+        log_message = log_message + ".";
     }
     
     protected void Button0ActionPerformed(java.awt.event.ActionEvent evt) { 
@@ -414,45 +489,155 @@ public class Calculation extends javax.swing.JFrame {
     	if(textDisplay.getText().equals("0")){
     		return;
     	}
-    	textDisplay.setText( textDisplay.getText() + "0"); 
+    	textDisplay.setText( textDisplay.getText() + "0");
+    	log_message = log_message + "0";
     }
     
     protected void Button_reverseActionPerformed(java.awt.event.ActionEvent evt) { 
     	
+    	if (Double.parseDouble(textDisplay.getText()) == 0.0){
+    		textDisplay.setText("0");
+    	}
+    	else{
+    		textDisplay.setText(- Double.parseDouble(textDisplay.getText()) + "");
+    	}
+    	result = Double.parseDouble(textDisplay.getText());
+    	
+    	log_message = "-(" + log_message + ")";
     }
     
     protected void Button_plusActionPerformed(java.awt.event.ActionEvent evt) {
     	
-    	first = Double.parseDouble(textDisplay.getText());
+    	if((result == 0) && (value == 0)){
+    		result = Double.parseDouble(textDisplay.getText());
+    		textDisplay.setText("");
+    		type = "+";
+    		log_message = log_message + " + ";
+    		return;
+    	}
+    	
+    	operation();
+    	
+    	textDisplay.setText("");
+    	
+    	log_message = log_message + " + ";
     	type = "+";
-       
     }
     
-    protected void Button_minusActionPerformed(java.awt.event.ActionEvent evt) {                                           
+    protected void Button_minusActionPerformed(java.awt.event.ActionEvent evt) { 
+    	
+    	if((result == 0) && (value == 0)){
+    		result = Double.parseDouble(textDisplay.getText());
+    		textDisplay.setText("");
+    		type = "-";
+    		log_message = log_message + " - ";
+    		return;
+    	}
+    	
+    	operation();
+    	
+    	textDisplay.setText("");
+    	
+    	log_message = log_message + " - ";
+    	type = "-";
         
     }
     
-    protected void Button_multipleActionPerformed(java.awt.event.ActionEvent evt) {                                           
+    protected void Button_multipleActionPerformed(java.awt.event.ActionEvent evt) { 
+    	
+    	if((result == 0) && (value == 0)){
+    		result = Double.parseDouble(textDisplay.getText());
+    		textDisplay.setText("");
+    		type = "*";
+    		log_message = log_message + " * ";
+    		return;
+    	}
+    	
+    	operation();
+    	
+    	textDisplay.setText("");
+    	
+    	log_message = "(" + log_message + ") * ";
+    	type = "*";
         
     }
     
-    protected void Button_divideActionPerformed(java.awt.event.ActionEvent evt) {                                           
+    protected void Button_divideActionPerformed(java.awt.event.ActionEvent evt) {
+    	
+    	if((result == 0) && (value == 0)){
+    		result = Double.parseDouble(textDisplay.getText());
+    		textDisplay.setText("");
+    		type = "/";
+    		log_message = log_message + " / ";
+    		return;
+    	}
+    	
+    	operation();
+    	
+    	textDisplay.setText("");
+    	
+    	log_message = "(" + log_message + ") / ";
+    	type = "/";
         
     }
     
-    protected void Button_clearActionPerformed(java.awt.event.ActionEvent evt) {                                           
+    protected void Button_moduleActionPerformed(java.awt.event.ActionEvent evt) {
+    	
+    	if((result == 0) && (value == 0)){
+    		result = Double.parseDouble(textDisplay.getText());
+    		textDisplay.setText("");
+    		type = "%";
+    		log_message = log_message + " % ";
+    		return;
+    	}
+    	
+    	operation();
+    	
+    	textDisplay.setText("");
+    	
+    	log_message = "(" + log_message + ") % ";
+    	type = "%";
         
     }
     
-    protected void Button_moduleActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        
-    }
-    
-    protected void Button_squareActionPerformed(java.awt.event.ActionEvent evt) {                                           
+    protected void Button_squareActionPerformed(java.awt.event.ActionEvent evt) {
+    	
+    	if(textDisplay.getText().contains(".")){
+    		textDisplay.setText(Double.parseDouble(textDisplay.getText()) * Double.parseDouble(textDisplay.getText()) + "");
+    	}
+    	else{
+    		textDisplay.setText(Integer.parseInt(textDisplay.getText()) * Integer.parseInt(textDisplay.getText()) + "");
+    	}
+    	
+    	log_message = "(" + log_message + ")^2";
         
     }
 
-    protected void Button_resultActionPerformed(java.awt.event.ActionEvent evt) {                                              
+    protected void Button_resultActionPerformed(java.awt.event.ActionEvent evt) {
+    	
+    	operation();
+    	
+    	log_message = log_message + " = ";
+    	
+    	textDisplay.setText(result + "");
+    	
+    	log_message = log_message + textDisplay.getText();
+    	
+    	l.log.append(log_message + "\n");
+    	
+    	type = "0";
+    	
+    	log_message = textDisplay.getText();
+    	
+    	
+    }
+    
+    protected void Button_clearActionPerformed(java.awt.event.ActionEvent evt) {
+    	
+    	value = 0;
+    	result = 0;
+    	textDisplay.setText("0");
+    	log_message = "";
         
     }
     
@@ -460,6 +645,24 @@ public class Calculation extends javax.swing.JFrame {
     	
     	l.setVisible(true);
     	 
+    }
+    
+    protected void operation(){
+    	if(type.equals("+")){
+    		result += Double.parseDouble(textDisplay.getText());
+    	}
+    	else if(type.equals("-")){
+    		result -= Double.parseDouble(textDisplay.getText());
+    	}
+    	else if(type.equals("*")){
+    		result = result * Double.parseDouble(textDisplay.getText());
+    	}
+    	else if(type.equals("/")){
+    		result = result / Double.parseDouble(textDisplay.getText());
+    	}
+    	else if(type.equals("%")){
+    		result = result % Double.parseDouble(textDisplay.getText());
+    	}
     }
 
                                               
