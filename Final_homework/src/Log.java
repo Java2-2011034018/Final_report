@@ -13,7 +13,7 @@ public class Log extends JFrame{
 	public JTextArea log;
 	
 	public Log(){
-		setTitle("log");
+		setTitle("                                             Log");
 		setSize(500,250);
 		setVisible(false);
 		
@@ -23,7 +23,7 @@ public class Log extends JFrame{
 		log.setEditable(false);
 		JScrollPane scrollPane = new JScrollPane(log);
 		
-		panel.add(log);
+		panel.add(scrollPane);
 		panel.add(delete);
 		
 		add(panel);
